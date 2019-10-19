@@ -1,5 +1,10 @@
 import React from "react";
+import OverviewCard from "../components/Overview/OverviewCard";
 
-const Overview = () => <></>;
+const Overview = () => (
+	<>
+		<OverviewCard />
+	</>
+);
 
 export default Overview;
