@@ -3,7 +3,7 @@
 import React from "react";
 
 const TransactionInput = () => {
-	return <div></div>;
+	return <input type="number"></input>;
 };
 
 export default TransactionInput;
