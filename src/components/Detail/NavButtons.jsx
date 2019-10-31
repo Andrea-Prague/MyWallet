@@ -1,12 +1,6 @@
 import React from "react";
-import Button from "../Button";
 
 // add concrete images to button
-const NavButtons = () => (
-	<>
-		{/* <Button image={arrowPrev} /> */}
-		<Button />
-	</>
-);
+const NavButtons = () => <>{/* <Button image={arrowPrev} /> */}</>;
 
 export default NavButtons;

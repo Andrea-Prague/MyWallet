@@ -1,23 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import Amount from "../Amount";
-import SingleTransactionModal from "./SingleTransactionModal/SingleTransactionModal";
-import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
+import styled from "styled-components";
+
+const Row = styled.div`
+	display: flex;
+	margin: 10px;
+	border-bottom: 1px solid #fa8072;
+`;
+
+const AmountWithButtons = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+`;
+
+const Name = styled.div`
+	display: flex;
+	align-items: center;
+	width: 100%;
+`;
+
+const Currency = styled.div`
+	padding: 0 5px;
+`;
 
 // props into amount for sign and number
-const TransactionRow = props => {
-	const [openModal, setOpenModal] = useState(false);
-	const handleOpenModal = () => setOpenModal(true);
-
+const TransactionRow = ({ name, sign, number, handleModalOpen }) => {
 	return (
-		<div onClick={handleOpenModal}>
-			<div>{props.name}</div>
-			<Amount sign={props.sign} number={props.number} />
-			<div>Kč</div>
-			<EditButton />
-			<DeleteButton />
-			{openModal && <SingleTransactionModal />}
-		</div>
+		<Row onClick={handleModalOpen}>
+			<Name>{name}</Name>
+			<AmountWithButtons>
+				<Amount sign={"-"} number={100} />
+				<Currency>Kč</Currency>
+				<DeleteButton />
+			</AmountWithButtons>
+		</Row>
 	);
 };
 

@@ -2,8 +2,8 @@
 // enable onClick on edit button
 import React from "react";
 
-const TransactionInput = () => {
-	return <input type="number"></input>;
+const TransactionInput = ({ number }) => {
+	return <input type="number">{number}</input>;
 };
 
 export default TransactionInput;
