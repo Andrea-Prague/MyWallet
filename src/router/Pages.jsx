@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Daily from "../pages/Daily";
+import Daily from "../pages/DetailedOverview";
 import App from "../App";
 
 const Pages = () => {

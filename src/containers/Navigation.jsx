@@ -1,8 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import NavigationBar from "../components/Navigation/NavigationBar";
 
-const Navigation = ({ setActiveTab }) => {
-	return <NavigationBar setActiveTab={setActiveTab} />;
+const Navigation = ({ setActiveOverview, setActiveDetail }) => {
+	return (
+		<NavigationBar
+			sesActiveOverview={setActiveOverview}
+			setActiveDetail={setActiveDetail}
+		/>
+	);
 };
 
 export default Navigation;

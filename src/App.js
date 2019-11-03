@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-
+import React from "react";
 import styled from "styled-components";
 import Home from "./pages/Home";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Daily from "./pages/Daily";
+import DetailedOverview from "./pages/DetailedOverview";
 
 const GlobalStyles = styled.div`
 	@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap");
@@ -16,7 +15,7 @@ const App = () => {
 			<BrowserRouter>
 				<Switch>
 					<Route component={Home} path="/" exact />
-					<Route component={Daily} path="/daily" />
+					<Route component={DetailedOverview} path="/:name" />
 					{/* udelej si custom stranku na not found a pridej jako komponentu */}
 					<Route component={() => <p>404 Not Found</p>} />
 				</Switch>

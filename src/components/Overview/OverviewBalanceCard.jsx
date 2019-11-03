@@ -1,6 +1,7 @@
 import React from "react";
 import Amount from "../Amount";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const BalanceCard = styled.div`
 	height: 200px;
@@ -17,7 +18,7 @@ const BalanceCard = styled.div`
 	align-content: space-around;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
 	text-decoration: none;
 	padding: 10px;
 	color: #404052;
@@ -40,10 +41,10 @@ const Header = styled.div`
 `;
 
 // mock of data, need to get data from detail
-const OverviewBalanceCard = ({ header }) => {
+const OverviewBalanceCard = ({ header, name }) => {
 	return (
 		<BalanceCard>
-			<StyledLink href={"/"}>
+			<StyledLink to={name}>
 				<Header>{header}</Header>
 				<Balance>
 					IN

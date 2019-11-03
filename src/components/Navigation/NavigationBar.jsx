@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Navigation = styled.div`
@@ -15,13 +15,15 @@ const Navigation = styled.div`
 
 const NavigationTab = styled.div`
 	border: 1px solid #fff;
+	width: 100%;
+	height: 100%;
 `;
 
-const NavigationBar = ({ setActiveTab }) => {
+const NavigationBar = ({ setActiveOverview, setActiveDetail }) => {
 	return (
 		<Navigation>
-			<NavigationTab onClick={setActiveTab}>Overview</NavigationTab>
-			<NavigationTab onClick={setActiveTab}>Detail</NavigationTab>
+			<NavigationTab onClick={setActiveOverview}>Overview</NavigationTab>
+			<NavigationTab onClick={setActiveDetail}>Detail</NavigationTab>
 		</Navigation>
 	);
 };

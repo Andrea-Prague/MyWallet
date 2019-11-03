@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import BalanceSwitch from "../components/Detail/BalanceSwich";
 import TransactionList from "../components/Detail/TransactionList";
 import NavButtons from "../components/Detail/NavButtons";
@@ -11,8 +11,6 @@ const Detail = () => {
 	const handleModalOpen = () => {
 		setIsModalOpen(!isModalOpen);
 	};
-
-	console.log(isModalOpen);
 
 	return (
 		<div>
