@@ -1,8 +1,6 @@
 import React from "react";
 import TransactionRow from "./TransactionRow";
 
-// needs fix
-
 const TransactionList = ({ handleModalOpen, balanceSwitch }) => {
 	const TransactionData = [
 		{
@@ -17,18 +15,18 @@ const TransactionList = ({ handleModalOpen, balanceSwitch }) => {
 		}
 	];
 
-	return (
-		balanceSwitch === "all" &&
-			TransactionData.map(data => (
+	return balanceSwitch === "all"
+		? TransactionData.map((data, index) => (
 				<TransactionRow
+					key={index}
 					name={data.name}
 					sign={data.sign}
 					number={data.number}
 					handleModalOpen={handleModalOpen}
 				/>
-			)),
-		balanceSwitch === "in" &&
-			TransactionData.map(
+		  ))
+		: balanceSwitch === "in"
+		? TransactionData.map(
 				data =>
 					data.sign === "+" && (
 						<TransactionRow
@@ -38,9 +36,8 @@ const TransactionList = ({ handleModalOpen, balanceSwitch }) => {
 							handleModalOpen={handleModalOpen}
 						/>
 					)
-			),
-		balanceSwitch === "out" &&
-			TransactionData.map(
+		  )
+		: TransactionData.map(
 				data =>
 					data.sign === "-" && (
 						<TransactionRow
@@ -50,8 +47,7 @@ const TransactionList = ({ handleModalOpen, balanceSwitch }) => {
 							handleModalOpen={handleModalOpen}
 						/>
 					)
-			)
-	);
+		  );
 };
 
 export default TransactionList;

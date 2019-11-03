@@ -25,6 +25,7 @@ const Detail = () => {
 		setBalanceSwitch("all");
 	};
 
+	console.log(balanceSwitch);
 	return (
 		<div>
 			<BalanceSwitch
