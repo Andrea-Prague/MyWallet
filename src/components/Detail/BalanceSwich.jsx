@@ -12,18 +12,23 @@ const Switch = styled.div`
 	margin-top: 5px;
 `;
 
+const SwitchSection = styled.div`
+	width: 100%;
+	cursor: pointer;
+`;
+
 const Divider = styled.div`
 	border: 1px solid;
 	height: 20px;
 `;
 
-const BalanceSwitch = () => (
+const BalanceSwitch = ({ setSwitchAll, setSwitchIn, setSwitchOut }) => (
 	<Switch>
-		<div>ALL</div>
+		<SwitchSection onClick={setSwitchAll}>ALL</SwitchSection>
 		<Divider />
-		<div>IN</div>
+		<SwitchSection onClick={setSwitchIn}>IN</SwitchSection>
 		<Divider />
-		<div>OUT</div>
+		<SwitchSection onClick={setSwitchOut}>OUT</SwitchSection>
 	</Switch>
 );
 

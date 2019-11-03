@@ -31,7 +31,7 @@ const TransactionRow = ({ name, sign, number, handleModalOpen }) => {
 		<Row onClick={handleModalOpen}>
 			<Name>{name}</Name>
 			<AmountWithButtons>
-				<Amount sign={"-"} number={100} />
+				<Amount sign={sign} number={number} />
 				<Currency>Kč</Currency>
 				<DeleteButton />
 			</AmountWithButtons>

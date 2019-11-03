@@ -4,7 +4,7 @@ import NavigationBar from "../components/Navigation/NavigationBar";
 const Navigation = ({ setActiveOverview, setActiveDetail }) => {
 	return (
 		<NavigationBar
-			sesActiveOverview={setActiveOverview}
+			setActiveOverview={setActiveOverview}
 			setActiveDetail={setActiveDetail}
 		/>
 	);
