@@ -7,7 +7,6 @@ const Switch = styled.div`
 	border: solid 1px;
 	border-radius: 10px;
 	width: 80%;
-	justify-content: space-evenly;
 	padding: 3px;
 	margin-top: 5px;
 `;
@@ -15,6 +14,7 @@ const Switch = styled.div`
 const SwitchSection = styled.div`
 	width: 100%;
 	cursor: pointer;
+	text-align: center;
 `;
 
 const Divider = styled.div`
