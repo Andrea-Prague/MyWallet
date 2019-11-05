@@ -18,8 +18,13 @@ const StyledButton = styled.div`
 `;
 
 // add props for image and color, fixed position and onClick for opening modal
-const NewTransactionButton = ({ handleModalOpen }) => {
-	return <StyledButton onClick={handleModalOpen}>+</StyledButton>;
+const NewTransactionButton = ({ handleModalOpen, setHeaderNewTransaction }) => {
+	const handleOpenModalWithHeader = () => {
+		handleModalOpen();
+		setHeaderNewTransaction();
+	};
+
+	return <StyledButton onClick={handleOpenModalWithHeader}>+</StyledButton>;
 };
 
 export default NewTransactionButton;
