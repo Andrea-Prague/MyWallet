@@ -8,9 +8,18 @@ import SingleTransactionModal from "../components/Detail/SingleTransactionModal/
 const Detail = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [balanceSwitch, setBalanceSwitch] = useState("all");
+	const [headerText, setHeaderText] = useState("");
 
 	const handleModalOpen = () => {
 		setIsModalOpen(!isModalOpen);
+	};
+
+	const setHeaderNewTransaction = () => {
+		setHeaderText("Add new transaction");
+	};
+
+	const setHeaderEditTransaction = () => {
+		setHeaderText("Edit transaction");
 	};
 
 	const setSwitchIn = () => {
@@ -36,11 +45,18 @@ const Detail = () => {
 			<TransactionList
 				handleModalOpen={handleModalOpen}
 				balanceSwitch={balanceSwitch}
+				setHeaderEditTransaction={setHeaderEditTransaction}
 			/>
 			<NavButtons />
-			<NewTransactionButton handleModalOpen={handleModalOpen} />
+			<NewTransactionButton
+				handleModalOpen={handleModalOpen}
+				setHeaderNewTransaction={setHeaderNewTransaction}
+			/>
 			{isModalOpen && (
-				<SingleTransactionModal handleModalOpen={handleModalOpen} />
+				<SingleTransactionModal
+					headerText={headerText}
+					handleModalOpen={handleModalOpen}
+				/>
 			)}
 		</div>
 	);

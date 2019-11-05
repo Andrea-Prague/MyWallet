@@ -1,7 +1,11 @@
 import React from "react";
 import TransactionRow from "./TransactionRow";
 
-const TransactionList = ({ handleModalOpen, balanceSwitch }) => {
+const TransactionList = ({
+	handleModalOpen,
+	balanceSwitch,
+	setHeaderEditTransaction
+}) => {
 	const TransactionData = [
 		{
 			name: "first transaction",
@@ -23,6 +27,7 @@ const TransactionList = ({ handleModalOpen, balanceSwitch }) => {
 					sign={data.sign}
 					number={data.number}
 					handleModalOpen={handleModalOpen}
+					setHeaderEditTransaction={setHeaderEditTransaction}
 				/>
 		  ))
 		: balanceSwitch === "in"

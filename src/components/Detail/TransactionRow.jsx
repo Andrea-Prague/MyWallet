@@ -26,9 +26,20 @@ const Currency = styled.div`
 `;
 
 // props into amount for sign and number
-const TransactionRow = ({ name, sign, number, handleModalOpen }) => {
+const TransactionRow = ({
+	name,
+	sign,
+	number,
+	handleModalOpen,
+	setHeaderEditTransaction
+}) => {
+	const handleOpenModalWithHeader = () => {
+		handleModalOpen();
+		setHeaderEditTransaction();
+	};
+
 	return (
-		<Row onClick={handleModalOpen}>
+		<Row onClick={handleOpenModalWithHeader}>
 			<Name>{name}</Name>
 			<AmountWithButtons>
 				<Amount sign={sign} number={number} />
