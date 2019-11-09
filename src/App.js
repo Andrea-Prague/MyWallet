@@ -10,10 +10,16 @@ const GlobalStyles = styled.div`
 `;
 
 const App = () => {
+	// const [neco, setNeco] = useState("")
+	// const upravState = () => {
+	// 	setNeco("neco")
+	// }
+
 	return (
 		<GlobalStyles>
 			<BrowserRouter>
 				<Switch>
+					{/* <Route component={() => <Home upravState={upravState} />} path="/" exact /> */}
 					<Route component={Home} path="/" exact />
 					<Route component={DetailedOverview} path="/:name" />
 					{/* udelej si custom stranku na not found a pridej jako komponentu */}
