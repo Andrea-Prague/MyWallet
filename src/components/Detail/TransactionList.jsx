@@ -1,26 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import TransactionRow from "./TransactionRow";
+import { TransactionData } from "../Data/TransactionData";
 
 const TransactionList = ({
 	handleModalOpen,
 	balanceSwitch,
 	setHeaderEditTransaction
 }) => {
-	const TransactionData = [
-		{
-			name: "first transaction",
-			number: 300,
-			sign: "+"
-		},
-		{
-			name: "second transaction",
-			number: 200,
-			sign: "-"
-		}
-	];
+	const [transactions, setTransactions] = useState(TransactionData);
+	const onDelete = index => {
+		setTransactions(
+			transactions.filter((_, transactionIndex) => transactionIndex !== index)
+		);
+	};
 
 	return balanceSwitch === "all"
-		? TransactionData.map((data, index) => (
+		? transactions.map((data, index) => (
 				<TransactionRow
 					key={index}
 					name={data.name}
@@ -28,10 +23,11 @@ const TransactionList = ({
 					number={data.number}
 					handleModalOpen={handleModalOpen}
 					setHeaderEditTransaction={setHeaderEditTransaction}
+					onDelete={() => onDelete(index)}
 				/>
 		  ))
 		: balanceSwitch === "in"
-		? TransactionData.map(
+		? transactions.map(
 				data =>
 					data.sign === "+" && (
 						<TransactionRow
@@ -42,7 +38,7 @@ const TransactionList = ({
 						/>
 					)
 		  )
-		: TransactionData.map(
+		: transactions.map(
 				data =>
 					data.sign === "-" && (
 						<TransactionRow
