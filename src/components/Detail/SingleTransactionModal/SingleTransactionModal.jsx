@@ -26,6 +26,10 @@ const Header = styled.div`
 	font-size: 20px;
 `;
 
+const styledButtonGroup = styled.div`
+	display: flex;
+`;
+
 const Close = styled.div`
 	position: absolute;
 	top: 10px;
@@ -50,9 +54,14 @@ const SingleTransactionModal = ({ headerText, handleModalOpen }) => {
 			{/* here is gonna be a x image to close */}
 			<InOuTSwitch />
 			<TransactionDate />
-			<TransactionInput />
-			<EditButton />
-			<DeleteButton />
+			<div>
+				<TransactionInput />
+			</div>
+			<styledButtonGroup>
+				<EditButton />
+				<DeleteButton />
+			</styledButtonGroup>
+
 			{/* <button onSubmit={addNewRow}>Save</button> */}
 		</Modal>
 	);
