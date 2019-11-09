@@ -3,7 +3,6 @@ import InOuTSwitch from "./InOutSwitch";
 import TransactionDate from "./TransactionDate";
 import TransactionInput from "./TransactionInput";
 import EditButton from "../EditButton";
-import DeleteButton from "../DeleteButton";
 import styled from "styled-components";
 
 const Modal = styled.div`
@@ -59,7 +58,6 @@ const SingleTransactionModal = ({ headerText, handleModalOpen }) => {
 			</div>
 			<styledButtonGroup>
 				<EditButton />
-				<DeleteButton />
 			</styledButtonGroup>
 
 			{/* <button onSubmit={addNewRow}>Save</button> */}

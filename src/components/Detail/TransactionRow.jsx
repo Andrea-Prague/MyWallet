@@ -1,28 +1,38 @@
 import React from "react";
 import Amount from "../Amount";
-import DeleteButton from "./DeleteButton";
 import styled from "styled-components";
 
 const Row = styled.div`
 	display: flex;
 	margin: 10px;
 	border-bottom: 1px solid #fa8072;
+	justify-content: space-between;
 `;
 
-const AmountWithButtons = styled.div`
+const StyledClickableRow = styled.div`
 	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+	justify-content: space-between;
+	width: 100%;
 `;
 
 const Name = styled.div`
-	display: flex;
-	align-items: center;
 	width: 100%;
 `;
 
 const Currency = styled.div`
 	padding: 0 5px;
+`;
+
+const StyledDeleteButton = styled.div`
+	background-color: #fa8072;
+	color: #fff;
+	border-radius: 5px;
+	height: 20px;
+	width: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 5px;
 `;
 
 // props into amount for sign and number
@@ -31,7 +41,8 @@ const TransactionRow = ({
 	sign,
 	number,
 	handleModalOpen,
-	setHeaderEditTransaction
+	setHeaderEditTransaction,
+	onDelete
 }) => {
 	const handleOpenModalWithHeader = () => {
 		handleModalOpen();
@@ -39,13 +50,14 @@ const TransactionRow = ({
 	};
 
 	return (
-		<Row onClick={handleOpenModalWithHeader}>
-			<Name>{name}</Name>
-			<AmountWithButtons>
+		<Row>
+			<StyledClickableRow onClick={handleOpenModalWithHeader}>
+				<Name>{name}</Name>
 				<Amount sign={sign} number={number} />
 				<Currency>Kč</Currency>
-				<DeleteButton />
-			</AmountWithButtons>
+			</StyledClickableRow>
+
+			<StyledDeleteButton onClick={onDelete}>x</StyledDeleteButton>
 		</Row>
 	);
 };
