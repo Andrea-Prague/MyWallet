@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import TransactionRow from "./TransactionRow";
-import { TransactionData } from "../Data/TransactionData";
 
 const TransactionList = ({
 	handleModalOpen,
 	balanceSwitch,
-	setHeaderEditTransaction
+	setHeaderEditTransaction,
+	transactions,
+	setTransactions
 }) => {
-	const [transactions, setTransactions] = useState(TransactionData);
 	const onDelete = index => {
 		setTransactions(
 			transactions.filter((_, transactionIndex) => transactionIndex !== index)

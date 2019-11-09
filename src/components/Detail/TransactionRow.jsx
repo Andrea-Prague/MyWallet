@@ -56,7 +56,6 @@ const TransactionRow = ({
 				<Amount sign={sign} number={number} />
 				<Currency>Kč</Currency>
 			</StyledClickableRow>
-
 			<StyledDeleteButton onClick={onDelete}>x</StyledDeleteButton>
 		</Row>
 	);

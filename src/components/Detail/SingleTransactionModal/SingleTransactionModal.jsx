@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import InOuTSwitch from "./InOutSwitch";
 import TransactionDate from "./TransactionDate";
 import TransactionInput from "./TransactionInput";
-import EditButton from "../EditButton";
 import styled from "styled-components";
 
 const Modal = styled.div`
@@ -38,13 +37,11 @@ const Close = styled.div`
 	width: 10px;
 `;
 
-const SingleTransactionModal = ({ headerText, handleModalOpen }) => {
-	// this needs to add an object into JSON
-	// const addNewRow = amount => {
-	// 	handleModalOpen();
-	// 	return <TransactionRow number={amount} />;
-	// };
-
+const SingleTransactionModal = ({
+	headerText,
+	handleModalOpen,
+	handleAddTransaction
+}) => {
 	return (
 		<Modal>
 			<Header>{headerText}</Header>
@@ -57,10 +54,8 @@ const SingleTransactionModal = ({ headerText, handleModalOpen }) => {
 				<TransactionInput />
 			</div>
 			<styledButtonGroup>
-				<EditButton />
+				<button onClick={handleAddTransaction}>Save</button>
 			</styledButtonGroup>
-
-			{/* <button onSubmit={addNewRow}>Save</button> */}
 		</Modal>
 	);
 };
