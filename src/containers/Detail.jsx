@@ -11,6 +11,8 @@ const Detail = () => {
 	const [balanceSwitch, setBalanceSwitch] = useState("all");
 	const [headerText, setHeaderText] = useState("");
 	const [transactions, setTransactions] = useState(TransactionData);
+	const [number, setNumber] = useState(null);
+	const [name, setName] = useState(undefined);
 
 	const handleModalOpen = () => {
 		setIsModalOpen(!isModalOpen);
@@ -36,15 +38,20 @@ const Detail = () => {
 		setBalanceSwitch("all");
 	};
 
-	const addTransactionData = value => {
-		setTransactions([
-			...transactions,
-			{ name: "io", number: value, type: "-" }
-		]);
+	const addTransactionNumber = value => {
+		setNumber(value);
+	};
+
+	const addTransactionName = value => {
+		setName(value);
 	};
 
 	const handleAddTransaction = () => {
 		setIsModalOpen(false);
+		setTransactions([
+			...transactions,
+			{ name: name, number: number, type: "-" }
+		]);
 	};
 
 	const onChangeValue = (value, index) => {
@@ -55,7 +62,6 @@ const Detail = () => {
 		};
 		transactionsCopy[index] = concreteTransactionCopy;
 		setTransactions(transactionsCopy);
-		console.log("iamhere");
 	};
 	console.log(transactions);
 
@@ -82,7 +88,8 @@ const Detail = () => {
 				<SingleTransactionModal
 					headerText={headerText}
 					handleModalOpen={handleModalOpen}
-					addTransactionData={e => addTransactionData(e.target.value)}
+					addTransactionNumber={e => addTransactionNumber(e.target.value)}
+					addTransactionName={e => addTransactionName(e.target.value)}
 					handleAddTransaction={handleAddTransaction}
 					onChangeValue={(e, index) => onChangeValue(e.target.value, index)}
 				/>

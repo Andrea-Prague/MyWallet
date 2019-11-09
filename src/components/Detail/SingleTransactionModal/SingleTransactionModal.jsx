@@ -40,9 +40,11 @@ const SingleTransactionModal = ({
 	headerText,
 	handleModalOpen,
 	handleAddTransaction,
-	addTransactionData,
+	addTransactionNumber,
+	addTransactionName,
 	onChangeValue,
-	number
+	number,
+	name
 }) => {
 	return (
 		<Modal>
@@ -58,14 +60,18 @@ const SingleTransactionModal = ({
 					onChange={
 						headerText === "Edit transaction"
 							? onChangeValue
-							: addTransactionData
+							: addTransactionNumber
 					}
 				/>
-				{/* <StyledInput
+				<StyledInput
 					type="text"
-					value={valueName}
-					onChange={handleInputValue}
-				/> */}
+					value={name}
+					onChange={
+						headerText === "Edit transaction"
+							? onChangeValue
+							: addTransactionName
+					}
+				/>
 			</div>
 			<button onClick={handleAddTransaction}>Save</button>
 		</Modal>
