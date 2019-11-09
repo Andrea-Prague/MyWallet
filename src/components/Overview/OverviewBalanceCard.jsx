@@ -48,16 +48,16 @@ const OverviewBalanceCard = ({ header, name }) => {
 				<Header>{header}</Header>
 				<Balance>
 					IN
-					<Amount sign={"+"} number={10} />
+					<Amount type={"+"} number={10} />
 				</Balance>
 				<Balance>
 					OUT
-					<Amount sign={"-"} number={20} />
+					<Amount type={"-"} number={20} />
 				</Balance>
 				<Divider></Divider>
 				<Balance>
 					TOTAL
-					<Amount sign={"-"} number={10} />
+					<Amount type={"-"} number={10} />
 				</Balance>
 			</StyledLink>
 		</BalanceCard>

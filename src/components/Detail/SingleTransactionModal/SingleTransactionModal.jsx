@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import InOuTSwitch from "./InOutSwitch";
 import TransactionDate from "./TransactionDate";
 import styled from "styled-components";
@@ -23,10 +23,6 @@ const Header = styled.div`
 	font-size: 20px;
 `;
 
-const styledButtonGroup = styled.div`
-	display: flex;
-`;
-
 const Close = styled.div`
 	position: absolute;
 	top: 10px;
@@ -45,21 +41,25 @@ const SingleTransactionModal = ({
 	handleModalOpen,
 	handleAddTransaction,
 	addTransactionData,
+	onChangeValue,
 	number
 }) => {
 	return (
 		<Modal>
 			<Header>{headerText}</Header>
 			<Close onClick={handleModalOpen}>X</Close>
-
 			{/* here is gonna be a x image to close */}
-			<InOuTSwitch />
+			{headerText === "Edit transaction" && <InOuTSwitch />}
 			<TransactionDate />
 			<div>
 				<StyledInput
 					type="number"
-					value={number}
-					onChange={addTransactionData}
+					value={number} // add number from transaction if it is edit
+					onChange={
+						headerText === "Edit transaction"
+							? onChangeValue
+							: addTransactionData
+					}
 				/>
 				{/* <StyledInput
 					type="text"
@@ -67,9 +67,7 @@ const SingleTransactionModal = ({
 					onChange={handleInputValue}
 				/> */}
 			</div>
-			<styledButtonGroup>
-				<button onClick={handleAddTransaction}>Save</button>
-			</styledButtonGroup>
+			<button onClick={handleAddTransaction}>Save</button>
 		</Modal>
 	);
 };

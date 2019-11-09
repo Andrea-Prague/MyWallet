@@ -39,13 +39,25 @@ const Detail = () => {
 	const addTransactionData = value => {
 		setTransactions([
 			...transactions,
-			{ name: "io", number: value, sign: "-" }
+			{ name: "io", number: value, type: "-" }
 		]);
 	};
 
 	const handleAddTransaction = () => {
 		setIsModalOpen(false);
 	};
+
+	const onChangeValue = (value, index) => {
+		let transactionsCopy = [...transactions];
+		let concreteTransactionCopy = {
+			...transactionsCopy[index],
+			number: value
+		};
+		transactionsCopy[index] = concreteTransactionCopy;
+		setTransactions(transactionsCopy);
+		console.log("iamhere");
+	};
+	console.log(transactions);
 
 	return (
 		<div>
@@ -72,6 +84,7 @@ const Detail = () => {
 					handleModalOpen={handleModalOpen}
 					addTransactionData={e => addTransactionData(e.target.value)}
 					handleAddTransaction={handleAddTransaction}
+					onChangeValue={(e, index) => onChangeValue(e.target.value, index)}
 				/>
 			)}
 		</div>

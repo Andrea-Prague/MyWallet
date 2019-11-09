@@ -35,14 +35,14 @@ const StyledDeleteButton = styled.div`
 	margin-bottom: 5px;
 `;
 
-// props into amount for sign and number
+// props into amount for type and number
 const TransactionRow = ({
 	name,
-	sign,
+	type,
 	number,
 	handleModalOpen,
 	setHeaderEditTransaction,
-	onDelete
+	handleDelete
 }) => {
 	const handleOpenModalWithHeader = () => {
 		handleModalOpen();
@@ -53,10 +53,10 @@ const TransactionRow = ({
 		<Row>
 			<StyledClickableRow onClick={handleOpenModalWithHeader}>
 				<Name>{name}</Name>
-				<Amount sign={sign} number={number} />
+				<Amount type={type} number={number} />
 				<Currency>Kč</Currency>
 			</StyledClickableRow>
-			<StyledDeleteButton onClick={onDelete}>x</StyledDeleteButton>
+			<StyledDeleteButton onClick={handleDelete}>x</StyledDeleteButton>
 		</Row>
 	);
 };
