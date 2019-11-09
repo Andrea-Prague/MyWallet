@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import InOuTSwitch from "./InOutSwitch";
 import TransactionDate from "./TransactionDate";
-import TransactionInput from "./TransactionInput";
 import styled from "styled-components";
 
 const Modal = styled.div`
@@ -37,10 +36,16 @@ const Close = styled.div`
 	width: 10px;
 `;
 
+const StyledInput = styled.input`
+	appearance: none;
+`;
+
 const SingleTransactionModal = ({
 	headerText,
 	handleModalOpen,
-	handleAddTransaction
+	handleAddTransaction,
+	addTransactionData,
+	number
 }) => {
 	return (
 		<Modal>
@@ -51,7 +56,16 @@ const SingleTransactionModal = ({
 			<InOuTSwitch />
 			<TransactionDate />
 			<div>
-				<TransactionInput />
+				<StyledInput
+					type="number"
+					value={number}
+					onChange={addTransactionData}
+				/>
+				{/* <StyledInput
+					type="text"
+					value={valueName}
+					onChange={handleInputValue}
+				/> */}
 			</div>
 			<styledButtonGroup>
 				<button onClick={handleAddTransaction}>Save</button>

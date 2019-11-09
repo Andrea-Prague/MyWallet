@@ -36,8 +36,14 @@ const Detail = () => {
 		setBalanceSwitch("all");
 	};
 
+	const addTransactionData = value => {
+		setTransactions([
+			...transactions,
+			{ name: "io", number: value, sign: "-" }
+		]);
+	};
+
 	const handleAddTransaction = () => {
-		setTransactions([...transactions, { name: "nkl", number: 9, sign: "-" }]);
 		setIsModalOpen(false);
 	};
 
@@ -64,6 +70,7 @@ const Detail = () => {
 				<SingleTransactionModal
 					headerText={headerText}
 					handleModalOpen={handleModalOpen}
+					addTransactionData={e => addTransactionData(e.target.value)}
 					handleAddTransaction={handleAddTransaction}
 				/>
 			)}
