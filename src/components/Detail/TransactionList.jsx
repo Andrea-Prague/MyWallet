@@ -6,8 +6,7 @@ const TransactionList = ({
 	balanceSwitch,
 	setHeaderEditTransaction,
 	transactions,
-	setTransactions,
-	onChangeValue
+	setTransactions
 }) => {
 	const handleDelete = index => {
 		setTransactions(
@@ -16,44 +15,43 @@ const TransactionList = ({
 	};
 
 	return balanceSwitch === "all"
-		? transactions.map((data, index) => (
+		? transactions.map(data => (
 				<TransactionRow
-					key={index}
+					key={data.id}
 					name={data.name}
 					type={data.type}
 					number={data.number}
 					handleModalOpen={handleModalOpen}
 					setHeaderEditTransaction={setHeaderEditTransaction}
-					handleDelete={() => handleDelete(index)}
-					onChangeValue={onChangeValue}
+					handleDelete={() => handleDelete(data.id - 1)}
 				/>
 		  ))
 		: balanceSwitch === "in"
 		? transactions.map(
-				(data, index) =>
+				data =>
 					data.type === "+" && (
 						<TransactionRow
-							key={index}
+							key={data.id}
 							name={data.name}
 							type={data.type}
 							number={data.number}
 							handleModalOpen={handleModalOpen}
 							setHeaderEditTransaction={setHeaderEditTransaction}
-							handleDelete={() => handleDelete(index)}
+							handleDelete={() => handleDelete(data.id - 1)}
 						/>
 					)
 		  )
 		: transactions.map(
-				(data, index) =>
+				data =>
 					data.type === "-" && (
 						<TransactionRow
-							key={index}
+							key={data.id}
 							name={data.name}
 							type={data.type}
 							number={data.number}
 							handleModalOpen={handleModalOpen}
 							setHeaderEditTransaction={setHeaderEditTransaction}
-							handleDelete={() => handleDelete(index)}
+							handleDelete={() => handleDelete(data.id - 1)}
 						/>
 					)
 		  );

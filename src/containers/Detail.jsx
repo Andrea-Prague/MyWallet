@@ -47,23 +47,13 @@ const Detail = () => {
 	};
 
 	const handleAddTransaction = () => {
+		const id = transactions.length + 1;
 		setIsModalOpen(false);
 		setTransactions([
 			...transactions,
-			{ name: name, number: number, type: "-" }
+			{ id: id, name: name, number: number, type: "-" }
 		]);
 	};
-
-	const onChangeValue = (value, index) => {
-		let transactionsCopy = [...transactions];
-		let concreteTransactionCopy = {
-			...transactionsCopy[index],
-			number: value
-		};
-		transactionsCopy[index] = concreteTransactionCopy;
-		setTransactions(transactionsCopy);
-	};
-	console.log(transactions);
 
 	return (
 		<div>
@@ -91,7 +81,8 @@ const Detail = () => {
 					addTransactionNumber={e => addTransactionNumber(e.target.value)}
 					addTransactionName={e => addTransactionName(e.target.value)}
 					handleAddTransaction={handleAddTransaction}
-					onChangeValue={(e, index) => onChangeValue(e.target.value, index)}
+					transactions={transactions}
+					setTransactions={setTransactions}
 				/>
 			)}
 		</div>

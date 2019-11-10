@@ -42,10 +42,22 @@ const SingleTransactionModal = ({
 	handleAddTransaction,
 	addTransactionNumber,
 	addTransactionName,
-	onChangeValue,
 	number,
-	name
+	name,
+	transactions,
+	setTransactions
 }) => {
+	const onChangeValue = (e, index) => {
+		let transactionsCopy = [...transactions];
+		let concreteTransactionCopy = {
+			...transactionsCopy[index],
+			number: e.target.value
+		};
+		transactionsCopy[index] = concreteTransactionCopy;
+		setTransactions(transactionsCopy);
+		console.log(transactions);
+	};
+
 	return (
 		<Modal>
 			<Header>{headerText}</Header>
