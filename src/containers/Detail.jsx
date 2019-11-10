@@ -4,62 +4,52 @@ import TransactionList from "../components/Detail/TransactionList";
 import NavButtons from "../components/Detail/NavButtons";
 import NewTransactionButton from "../components/Detail/NewTransactionButton";
 import SingleTransactionModal from "../components/Detail/SingleTransactionModal/SingleTransactionModal";
+import { TransactionData } from "../components/Data/TransactionData";
 
 const Detail = () => {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [balanceSwitch, setBalanceSwitch] = useState("all");
-	const [headerText, setHeaderText] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [balanceSwitch, setBalanceSwitch] = useState("all");
+    const [headerText, setHeaderText] = useState("");
+    const [transactions, setTransactions] = useState(TransactionData);
+    const [transIdToEdit, setTransIdToEdit] = useState();
 
-	const handleModalOpen = () => {
-		setIsModalOpen(!isModalOpen);
-	};
+    const handleModalOpen = transactionId => {
+        setIsModalOpen(!isModalOpen);
+        transactionId && setTransIdToEdit(transactionId);
+    };
 
-	const setHeaderNewTransaction = () => {
-		setHeaderText("Add new transaction");
-	};
+    const handleAddTransaction = transaction => {
+        setIsModalOpen(false);
+        setTransactions([...transactions, transaction]);
+    };
 
-	const setHeaderEditTransaction = () => {
-		setHeaderText("Edit transaction");
-	};
-
-	const setSwitchIn = () => {
-		setBalanceSwitch("in");
-	};
-
-	const setSwitchOut = () => {
-		setBalanceSwitch("out");
-	};
-
-	const setSwitchAll = () => {
-		setBalanceSwitch("all");
-	};
-
-	console.log(balanceSwitch);
-	return (
-		<div>
-			<BalanceSwitch
-				setSwitchIn={setSwitchIn}
-				setSwitchOut={setSwitchOut}
-				setSwitchAll={setSwitchAll}
-			/>
-			<TransactionList
-				handleModalOpen={handleModalOpen}
-				balanceSwitch={balanceSwitch}
-				setHeaderEditTransaction={setHeaderEditTransaction}
-			/>
-			<NavButtons />
-			<NewTransactionButton
-				handleModalOpen={handleModalOpen}
-				setHeaderNewTransaction={setHeaderNewTransaction}
-			/>
-			{isModalOpen && (
-				<SingleTransactionModal
-					headerText={headerText}
-					handleModalOpen={handleModalOpen}
-				/>
-			)}
-		</div>
-	);
+    return (
+        <div>
+            <BalanceSwitch setBalanceSwitch={setBalanceSwitch} />
+            <TransactionList
+                editTransaction={handleModalOpen}
+                balanceSwitch={balanceSwitch}
+                setHeaderText={() => setHeaderText("Edit transaction")}
+                transactions={transactions}
+                setTransactions={setTransactions}
+            />
+            <NavButtons />
+            <NewTransactionButton
+                handleModalOpen={handleModalOpen}
+                setHeaderText={() => setHeaderText("Add new transaction")}
+            />
+            {isModalOpen && (
+                <SingleTransactionModal
+                    headerText={headerText}
+                    handleModalOpen={handleModalOpen}
+                    handleAddTransaction={handleAddTransaction}
+                    transactions={transactions}
+                    setTransactions={setTransactions}
+                    transIdToEdit={transIdToEdit}
+                />
+            )}
+        </div>
+    );
 };
 
 export default Detail;

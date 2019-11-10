@@ -2,57 +2,40 @@ import React from "react";
 import TransactionRow from "./TransactionRow";
 
 const TransactionList = ({
-	handleModalOpen,
-	balanceSwitch,
-	setHeaderEditTransaction
+    editTransaction,
+    balanceSwitch,
+    setHeaderText,
+    transactions,
+    setTransactions
 }) => {
-	const TransactionData = [
-		{
-			name: "first transaction",
-			number: 300,
-			sign: "+"
-		},
-		{
-			name: "second transaction",
-			number: 200,
-			sign: "-"
-		}
-	];
+    const handleDelete = index => {
+        setTransactions(
+            transactions.filter(
+                (_, transactionIndex) => transactionIndex !== index
+            )
+        );
+    };
 
-	return balanceSwitch === "all"
-		? TransactionData.map((data, index) => (
-				<TransactionRow
-					key={index}
-					name={data.name}
-					sign={data.sign}
-					number={data.number}
-					handleModalOpen={handleModalOpen}
-					setHeaderEditTransaction={setHeaderEditTransaction}
-				/>
-		  ))
-		: balanceSwitch === "in"
-		? TransactionData.map(
-				data =>
-					data.sign === "+" && (
-						<TransactionRow
-							name={data.name}
-							sign={data.sign}
-							number={data.number}
-							handleModalOpen={handleModalOpen}
-						/>
-					)
-		  )
-		: TransactionData.map(
-				data =>
-					data.sign === "-" && (
-						<TransactionRow
-							name={data.name}
-							sign={data.sign}
-							number={data.number}
-							handleModalOpen={handleModalOpen}
-						/>
-					)
-		  );
+    const getFilteredTransactions = () => {
+        return transactions.filter(data => {
+            if (balanceSwitch === "all") return data;
+            const transactionType = data.type === "+" ? "in" : "out";
+
+            return transactionType === balanceSwitch;
+        });
+    };
+
+    return getFilteredTransactions().map(data => (
+        <TransactionRow
+            key={data.id}
+            name={data.name}
+            type={data.type}
+            number={data.number}
+            editTransaction={() => editTransaction(data.id)}
+            setHeaderText={setHeaderText}
+            handleDelete={() => handleDelete(data.id - 1)}
+        />
+    ));
 };
 
 export default TransactionList;

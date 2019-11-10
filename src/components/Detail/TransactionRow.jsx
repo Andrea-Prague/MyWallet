@@ -1,53 +1,64 @@
 import React from "react";
 import Amount from "../Amount";
-import DeleteButton from "./DeleteButton";
 import styled from "styled-components";
 
 const Row = styled.div`
-	display: flex;
-	margin: 10px;
-	border-bottom: 1px solid #fa8072;
+    display: flex;
+    margin: 10px;
+    border-bottom: 1px solid #fa8072;
+    justify-content: space-between;
 `;
 
-const AmountWithButtons = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+const StyledClickableRow = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 `;
 
 const Name = styled.div`
-	display: flex;
-	align-items: center;
-	width: 100%;
+    width: 100%;
 `;
 
 const Currency = styled.div`
-	padding: 0 5px;
+    padding: 0 5px;
 `;
 
-// props into amount for sign and number
-const TransactionRow = ({
-	name,
-	sign,
-	number,
-	handleModalOpen,
-	setHeaderEditTransaction
-}) => {
-	const handleOpenModalWithHeader = () => {
-		handleModalOpen();
-		setHeaderEditTransaction();
-	};
+const StyledDeleteButton = styled.div`
+    background-color: #fa8072;
+    color: #fff;
+    border-radius: 5px;
+    height: 20px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+`;
 
-	return (
-		<Row onClick={handleOpenModalWithHeader}>
-			<Name>{name}</Name>
-			<AmountWithButtons>
-				<Amount sign={sign} number={number} />
-				<Currency>Kč</Currency>
-				<DeleteButton />
-			</AmountWithButtons>
-		</Row>
-	);
+// props into amount for type and number
+const TransactionRow = ({
+    name,
+    type,
+    number,
+    editTransaction,
+    setHeaderText,
+    handleDelete
+}) => {
+    const handleOpenModalWithHeader = () => {
+        editTransaction();
+        setHeaderText();
+    };
+
+    return (
+        <Row>
+            <StyledClickableRow onClick={handleOpenModalWithHeader}>
+                <Name>{name}</Name>
+                <Amount type={type} number={number} />
+                <Currency>Kč</Currency>
+            </StyledClickableRow>
+            <StyledDeleteButton onClick={handleDelete}>x</StyledDeleteButton>
+        </Row>
+    );
 };
 
 export default TransactionRow;

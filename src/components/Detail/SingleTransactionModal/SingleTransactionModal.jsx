@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import InOuTSwitch from "./InOutSwitch";
 import TransactionDate from "./TransactionDate";
-import TransactionInput from "./TransactionInput";
-import EditButton from "../EditButton";
-import DeleteButton from "../DeleteButton";
 import styled from "styled-components";
 
 const Modal = styled.div`
@@ -26,10 +23,6 @@ const Header = styled.div`
 	font-size: 20px;
 `;
 
-const styledButtonGroup = styled.div`
-	display: flex;
-`;
-
 const Close = styled.div`
 	position: absolute;
 	top: 10px;
@@ -39,30 +32,69 @@ const Close = styled.div`
 	width: 10px;
 `;
 
-const SingleTransactionModal = ({ headerText, handleModalOpen }) => {
-	// this needs to add an object into JSON
-	// const addNewRow = amount => {
-	// 	handleModalOpen();
-	// 	return <TransactionRow number={amount} />;
-	// };
+const StyledInput = styled.input`
+	appearance: none;
+`;
+
+const SingleTransactionModal = ({
+	headerText,
+	handleModalOpen,
+	handleAddTransaction,
+	transactions,
+	setTransactions,
+	transIdToEdit
+}) => {
+	const [values, setValues] = useState({ number: 0, name: "" });
+
+	useEffect(() => {
+		headerText === "Edit transaction" &&
+			setValues(
+				transactions.find(transaction => transaction.id === transIdToEdit)
+			);
+	}, []);
+
+	const onEditTransactions = () => {
+		let transactionsCopy = [...transactions];
+		transactionsCopy[transIdToEdit - 1] = values;
+		setTransactions(transactionsCopy);
+		handleModalOpen();
+	};
 
 	return (
 		<Modal>
 			<Header>{headerText}</Header>
 			<Close onClick={handleModalOpen}>X</Close>
-
 			{/* here is gonna be a x image to close */}
-			<InOuTSwitch />
+			{headerText === "Edit transaction" && <InOuTSwitch />}
 			<TransactionDate />
 			<div>
-				<TransactionInput />
+				<StyledInput
+					type="number"
+					value={values.number} // add number from transaction if it is edit
+					onChange={event =>
+						setValues({ ...values, number: event.target.value })
+					}
+				/>
+				<StyledInput
+					type="text"
+					value={values.name}
+					onChange={event => setValues({ ...values, name: event.target.value })}
+				/>
 			</div>
-			<styledButtonGroup>
-				<EditButton />
-				<DeleteButton />
-			</styledButtonGroup>
-
-			{/* <button onSubmit={addNewRow}>Save</button> */}
+			<button
+				onClick={
+					headerText === "Edit transaction"
+						? onEditTransactions
+						: () =>
+								handleAddTransaction({
+									...values,
+									type: "+",
+									id: transactions.length + 1
+								})
+				}
+			>
+				Save
+			</button>
 		</Modal>
 	);
 };
