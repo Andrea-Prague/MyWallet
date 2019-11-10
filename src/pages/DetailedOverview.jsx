@@ -26,8 +26,8 @@ const StyledButton = styled.button`
 
 const Daily = () => {
 	const { push } = useHistory();
-	const { name } = useParams();
-
+    const { name } = useParams();
+    
 	return (
 		<StyledPage>
 			<StyledHeader>{name}</StyledHeader>

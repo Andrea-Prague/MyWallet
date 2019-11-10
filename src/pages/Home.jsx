@@ -4,28 +4,26 @@ import Detail from "../containers/Detail";
 import Overview from "../containers/Overview";
 
 const Home = () => {
-	const [isActiveOverview, setIsActiveOverview] = useState(true);
+    const [isActiveOverview, setIsActiveOverview] = useState(true);
 
-	console.log("overview", isActiveOverview);
+    const setActiveOverview = () => {
+        setIsActiveOverview(true);
+    };
 
-	const setActiveOverview = () => {
-		setIsActiveOverview(true);
-	};
+    const setActiveDetail = () => {
+        setIsActiveOverview(false);
+    };
 
-	const setActiveDetail = () => {
-		setIsActiveOverview(false);
-	};
-
-	return (
-		<>
-			<Navigation
-				setActiveOverview={setActiveOverview}
-				setActiveDetail={setActiveDetail}
-			/>
-			{!isActiveOverview && <Detail />}
-			{isActiveOverview && <Overview />}
-		</>
-	);
+    return (
+        <>
+            <Navigation
+                setActiveOverview={setActiveOverview}
+                setActiveDetail={setActiveDetail}
+            />
+            {!isActiveOverview && <Detail />}
+            {isActiveOverview && <Overview />}
+        </>
+    );
 };
 
 export default Home;
