@@ -16,12 +16,12 @@ const Divider = styled.div`
 	height: 20px;
 `;
 
-const InOuTSwitch = () => {
+const InOuTSwitch = ({ setTransactionType }) => {
 	return (
 		<Switch>
-			<div>Out</div>
+			<div onClick={setTransactionType("-")}>Out</div>
 			<Divider />
-			<div>In</div>
+			<div onClick={setTransactionType("+")}>In</div>
 		</Switch>
 	);
 };

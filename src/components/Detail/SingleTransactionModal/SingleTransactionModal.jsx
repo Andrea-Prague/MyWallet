@@ -42,9 +42,12 @@ const SingleTransactionModal = ({
 	handleAddTransaction,
 	transactions,
 	setTransactions,
-	transIdToEdit
+	transIdToEdit,
+	editBalanceSwitch,
+	setEditBalanceSwitch
 }) => {
 	const [values, setValues] = useState({ number: 0, name: "" });
+	const [transactionType, setTransactionType] = useState("-");
 
 	useEffect(() => {
 		headerText === "Edit transaction" &&
@@ -65,7 +68,9 @@ const SingleTransactionModal = ({
 			<Header>{headerText}</Header>
 			<Close onClick={handleModalOpen}>X</Close>
 			{/* here is gonna be a x image to close */}
-			{headerText === "Edit transaction" && <InOuTSwitch />}
+			{headerText === "Edit transaction" && (
+				<InOuTSwitch setTransactionType={setTransactionType} />
+			)}
 			<TransactionDate />
 			<div>
 				<StyledInput
@@ -88,7 +93,7 @@ const SingleTransactionModal = ({
 						: () =>
 								handleAddTransaction({
 									...values,
-									type: "+",
+									type: transactionType,
 									id: transactions.length + 1
 								})
 				}
