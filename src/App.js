@@ -3,14 +3,13 @@ import styled from "styled-components";
 import Home from "./pages/Home";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DetailedOverview from "./pages/DetailedOverview";
-import { GetData } from "./components/GetData";
 
 const GlobalStyles = styled.div`
 	@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap");
 	font-family: "Roboto";
 `;
 
-const App = ({ transactionsData }) => {
+const App = () => {
 	return (
 		<>
 			<GlobalStyles>
@@ -24,7 +23,6 @@ const App = ({ transactionsData }) => {
 					</Switch>
 				</BrowserRouter>
 			</GlobalStyles>
-			<GetData transactionsData={transactionsData} />
 		</>
 	);
 };
