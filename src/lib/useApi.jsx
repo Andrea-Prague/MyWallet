@@ -8,23 +8,26 @@ import Axios from "axios";
 
 // v komponente const {getTransaction} = useApi
 export const useApi = () => {
-	const [transactionsData, setTransactionsData] = useState();
+    const [transactionsData, setTransactionsData] = useState();
 
-	const fetchData = async () => {
-		try {
-			const response = await Axios.get("http://localhost:3001/TransactionData");
+    const fetchData = async () => {
+        try {
+            const response = await Axios.get(
+                "http://localhost:3001/TransactionData"
+            );
 
-			setTransactionsData(response.data);
-		} catch (err) {
-			console.log(err);
-		}
-	};
+            console.log(response.data);
+            setTransactionsData(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
-	useEffect(() => {
-		fetchData();
-	}, []);
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-	return transactionsData;
+    return transactionsData;
 };
 
 export default useApi;
