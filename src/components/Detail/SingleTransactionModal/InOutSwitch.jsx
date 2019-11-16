@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Switch = styled.div`
@@ -16,12 +16,40 @@ const Divider = styled.div`
 	height: 20px;
 `;
 
-const InOuTSwitch = ({ setTransactionType }) => {
+const SwitchOut = styled.div`
+	background-color: ${props =>
+		props.transactionType === "-" ? "#fa8072" : "#fff"};
+	color: ${props => props.transactionType === "-" && "#fff"};
+	width: 50%;
+	border-radius: 10px 0 0 10px;
+	text-align: center;
+`;
+
+const SwitchIn = styled.div`
+	background-color: ${props =>
+		props.transactionType === "+" ? "#fa8072" : "#fff"};
+	color: ${props => props.transactionType === "+" && "#fff"};
+	width: 50%;
+	border-radius: 0 10px 10px 0;
+	text-align: center;
+`;
+
+const InOuTSwitch = ({ setTransactionType, transactionType }) => {
 	return (
 		<Switch>
-			<div onClick={setTransactionType("-")}>Out</div>
+			<SwitchOut
+				onClick={() => setTransactionType("-")}
+				transactionType={transactionType}
+			>
+				Out
+			</SwitchOut>
 			<Divider />
-			<div onClick={setTransactionType("+")}>In</div>
+			<SwitchIn
+				onClick={() => setTransactionType("+")}
+				transactionType={transactionType}
+			>
+				In
+			</SwitchIn>
 		</Switch>
 	);
 };
