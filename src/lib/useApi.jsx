@@ -8,7 +8,7 @@ import Axios from "axios";
 
 // v komponente const {getTransaction} = useApi
 export const useApi = () => {
-	const [transactionsData, setTransactionsData] = useState([]);
+	const [transactionsData, setTransactionsData] = useState();
 
 	const fetchData = async () => {
 		try {

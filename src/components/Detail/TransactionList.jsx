@@ -15,14 +15,12 @@ const TransactionList = ({
 	};
 
 	const getFilteredTransactions = () => {
-		if (transactions !== undefined) {
-			return transactions.filter(data => {
-				if (balanceSwitch === "all") return data;
-				const transactionType = data.type === "+" ? "in" : "out";
+		return transactions.filter(data => {
+			if (balanceSwitch === "all") return data;
+			const transactionType = data.type === "+" ? "in" : "out";
 
-				return transactionType === balanceSwitch;
-			});
-		}
+			return transactionType === balanceSwitch;
+		});
 	};
 
 	return getFilteredTransactions().map(data => (
