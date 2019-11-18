@@ -1,18 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useApi } from "../lib/useApi";
+import styled from "styled-components";
+
 import BalanceSwitch from "../components/Detail/BalanceSwich";
 import TransactionList from "../components/Detail/TransactionList";
-import NavButtons from "../components/Detail/NavButtons";
-import NewTransactionButton from "../components/Detail/NewTransactionButton";
 import SingleTransactionModal from "../components/Detail/SingleTransactionModal/SingleTransactionModal";
-// import { TransactionData } from "../components/Data/TransactionData";
-import useApi from "../lib/useApi";
+
+const NewTransactionButton = styled.div`
+    background-color: #fa8072;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    border-radius: 50px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 28px;
+    cursor: pointer;
+`;
 
 const Detail = () => {
-    const transactionsData = useApi();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [balanceSwitch, setBalanceSwitch] = useState("all");
-    const [headerText, setHeaderText] = useState("");
+    const { getTransactionList } = useApi();
+
     const [transactions, setTransactions] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [balanceType, setBalanceType] = useState("all");
+    const [headerText, setHeaderText] = useState("");
     const [transIdToEdit, setTransIdToEdit] = useState();
 
     const handleModalOpen = transactionId => {
@@ -25,33 +41,45 @@ const Detail = () => {
         setTransactions([...transactions, transaction]);
     };
 
-    React.useEffect(() => {
-        setTransactions(transactionsData);
-    }, [transactionsData, setTransactions]);
+    const createNewTransaction = () => {
+        handleModalOpen();
+        setHeaderText("Add new transaction");
+    };
+
+    const openEditTransaction = id => {
+        handleModalOpen(id);
+        setHeaderText("Edit transaction");
+    };
+
+    useEffect(() => {
+        getTransactionList()
+            .then(resp => setTransactions(resp.data))
+            .catch(err => console.log({ err }));
+    }, []);
 
     return (
         <div>
             {transactions && (
                 <>
-                    <BalanceSwitch setBalanceSwitch={setBalanceSwitch} />
+                    <BalanceSwitch setBalanceType={setBalanceType} />
+
                     <TransactionList
-                        editTransaction={handleModalOpen}
-                        balanceSwitch={balanceSwitch}
-                        setHeaderText={() => setHeaderText("Edit transaction")}
+                        balanceType={balanceType}
                         transactions={transactions}
+                        openEditTransaction={openEditTransaction}
                         setTransactions={setTransactions}
                     />
-                    <NavButtons />
+
                     <NewTransactionButton
-                        handleModalOpen={handleModalOpen}
-                        setHeaderText={() =>
-                            setHeaderText("Add new transaction")
-                        }
-                    />
+                        onClick={() => createNewTransaction()}
+                    >
+                        +
+                    </NewTransactionButton>
+
                     {isModalOpen && (
                         <SingleTransactionModal
                             headerText={headerText}
-                            handleModalOpen={handleModalOpen}
+                            handleModalClose={handleModalOpen}
                             handleAddTransaction={handleAddTransaction}
                             transactions={transactions}
                             setTransactions={setTransactions}

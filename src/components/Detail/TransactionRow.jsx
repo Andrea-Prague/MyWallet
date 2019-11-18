@@ -35,25 +35,12 @@ const StyledDeleteButton = styled.div`
     margin-bottom: 5px;
 `;
 
-// props into amount for type and number
-const TransactionRow = ({
-    name,
-    type,
-    number,
-    editTransaction,
-    setHeaderText,
-    handleDelete
-}) => {
-    const handleOpenModalWithHeader = () => {
-        editTransaction();
-        setHeaderText();
-    };
-
+const TransactionRow = ({ transaction, openEditTransaction, handleDelete }) => {
     return (
         <Row>
-            <StyledClickableRow onClick={handleOpenModalWithHeader}>
-                <Name>{name}</Name>
-                <Amount type={type} number={number} />
+            <StyledClickableRow onClick={openEditTransaction}>
+                <Name>{transaction.name}</Name>
+                <Amount type={transaction.type} amount={transaction.amount} />
                 <Currency>Kč</Currency>
             </StyledClickableRow>
             <StyledDeleteButton onClick={handleDelete}>x</StyledDeleteButton>

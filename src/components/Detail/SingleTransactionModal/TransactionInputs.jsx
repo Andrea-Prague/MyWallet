@@ -4,16 +4,16 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
-	appearance: none;
+    appearance: none;
 `;
 
-const TransactionInputs = ({ number, name, changeValues }) => {
-	return (
-		<>
-			<StyledInput type="number" value={number} onChange={changeValues} />
-			<StyledInput type="text" value={name} onChange={changeValues} />
-		</>
-	);
+const TransactionInputs = ({ amount, name, changeValues }) => {
+    return (
+        <>
+            <StyledInput type="number" value={amount} onChange={changeValues} />
+            <StyledInput type="text" value={name} onChange={changeValues} />
+        </>
+    );
 };
 
 export default TransactionInputs;
