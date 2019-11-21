@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// use library? Maybe https://www.npmjs.com/package/react-datepicker?
+// use library https://www.npmjs.com/package/react-datepicker?
 const TransactionDate = () => {
 	let date = new Date();
 	const [chooseDate, setChooseDate] = useState(date);
