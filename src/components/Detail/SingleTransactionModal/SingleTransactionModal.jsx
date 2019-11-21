@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import InOuTSwitch from "./InOutSwitch";
 import TransactionDate from "./TransactionDate";
 import styled from "styled-components";
+import { useApi } from "../../../lib/useApi";
 
 const Modal = styled.div`
 	position: fixed;
@@ -33,41 +34,20 @@ const Close = styled.div`
 `;
 
 const StyledInput = styled.input`
-	margin: 10px;
-	border: 1px solid;
-	height: 20px;
-	width: 80%;
-	border-radius: 5px;
-`;
-
-const StyledBody = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-`;
-
-const StyledButton = styled.button`
-	border: solid 1px #fa8072;
-	border-radius: 20px;
-	box-shadow: 2px 2px 10px #fa8072;
-	background-color: #fff;
-	width: 90%;
-	height: 30px;
-	cursor: pointer;
-	margin-top: 10px;
-	align-items: center;
+	appearance: none;
 `;
 
 const SingleTransactionModal = ({
 	headerText,
-	handleModalOpen,
+	handleModalClose,
 	handleAddTransaction,
 	transactions,
 	setTransactions,
 	transIdToEdit
 }) => {
-	const [values, setValues] = useState({ number: 0, name: "" });
-	const [transactionType, setTransactionType] = useState("-");
+	const { saveNewTransaction } = useApi();
+
+	const [values, setValues] = useState({ amount: 0, name: "" });
 
 	useEffect(() => {
 		headerText === "Edit transaction" &&
@@ -80,52 +60,51 @@ const SingleTransactionModal = ({
 		let transactionsCopy = [...transactions];
 		transactionsCopy[transIdToEdit - 1] = values;
 		setTransactions(transactionsCopy);
-		handleModalOpen();
+		handleModalClose();
+	};
+
+	const addNewTransaction = () => {
+		const transaction = {
+			...values,
+			type: "+",
+			id: transactions.length + 1
+		};
+
+		handleAddTransaction(transaction);
+		saveNewTransaction(transaction);
 	};
 
 	return (
 		<Modal>
 			<Header>{headerText}</Header>
-			<Close onClick={handleModalOpen}>X</Close>
-			{/* here is gonna be a x image to close */}
-			{headerText !== "Edit transaction" && (
-				<InOuTSwitch
-					setTransactionType={setTransactionType}
-					transactionType={transactionType}
-				/>
-			)}
+			<Close onClick={handleModalClose}>X</Close>
+
+			{headerText === "Edit transaction" && <InOuTSwitch />}
+
 			<TransactionDate />
-			<StyledBody>
+			<div>
 				<StyledInput
-					placeholder="Enter Transaction Amount"
 					type="number"
-					value={values.number === 0 ? undefined : values.number} // add number from transaction if it is edit
+					value={values.amount}
 					onChange={event =>
-						setValues({ ...values, number: event.target.value })
+						setValues({ ...values, amount: event.target.value })
 					}
 				/>
 				<StyledInput
-					placeholder="Enter Transaction Name"
 					type="text"
 					value={values.name}
 					onChange={event => setValues({ ...values, name: event.target.value })}
 				/>
-
-				<StyledButton
-					onClick={
-						headerText === "Edit transaction"
-							? onEditTransactions
-							: () =>
-									handleAddTransaction({
-										...values,
-										type: transactionType,
-										id: transactions.length + 1
-									})
-					}
-				>
-					Save
-				</StyledButton>
-			</StyledBody>
+			</div>
+			<button
+				onClick={
+					headerText === "Edit transaction"
+						? onEditTransactions
+						: addNewTransaction
+				}
+			>
+				Save
+			</button>
 		</Modal>
 	);
 };

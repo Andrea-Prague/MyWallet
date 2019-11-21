@@ -22,17 +22,13 @@ const Divider = styled.div`
     height: 20px;
 `;
 
-const BalanceSwitch = ({ setBalanceSwitch }) => (
+const BalanceSwitch = ({ setBalanceType }) => (
     <Switch>
-        <SwitchSection onClick={() => setBalanceSwitch("all")}>
-            ALL
-        </SwitchSection>
+        <SwitchSection onClick={() => setBalanceType("all")}>ALL</SwitchSection>
         <Divider />
-        <SwitchSection onClick={() => setBalanceSwitch("in")}>IN</SwitchSection>
+        <SwitchSection onClick={() => setBalanceType("in")}>IN</SwitchSection>
         <Divider />
-        <SwitchSection onClick={() => setBalanceSwitch("out")}>
-            OUT
-        </SwitchSection>
+        <SwitchSection onClick={() => setBalanceType("out")}>OUT</SwitchSection>
     </Switch>
 );
 

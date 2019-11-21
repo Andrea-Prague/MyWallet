@@ -2,9 +2,8 @@ import React from "react";
 import TransactionRow from "./TransactionRow";
 
 const TransactionList = ({
-    editTransaction,
-    balanceSwitch,
-    setHeaderText,
+    balanceType,
+    openEditTransaction,
     transactions,
     setTransactions
 }) => {
@@ -18,21 +17,17 @@ const TransactionList = ({
 
     const getFilteredTransactions = () => {
         return transactions.filter(data => {
-            if (balanceSwitch === "all") return data;
+            if (balanceType === "all") return data;
             const transactionType = data.type === "+" ? "in" : "out";
 
-            return transactionType === balanceSwitch;
+            return transactionType === balanceType;
         });
     };
 
     return getFilteredTransactions().map(data => (
         <TransactionRow
-            key={data.id}
-            name={data.name}
-            type={data.type}
-            number={data.number}
-            editTransaction={() => editTransaction(data.id)}
-            setHeaderText={setHeaderText}
+            transaction={data}
+            openEditTransaction={() => openEditTransaction(data.id)}
             handleDelete={() => handleDelete(data.id - 1)}
         />
     ));
