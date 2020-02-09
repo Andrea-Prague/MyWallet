@@ -8,9 +8,6 @@ import SingleTransactionModal from "../components/Detail/SingleTransactionModal/
 
 const NewTransactionButton = styled.div`
     background-color: #fa8072;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 50px;
     width: 50px;
     color: #fff;
@@ -21,6 +18,12 @@ const NewTransactionButton = styled.div`
     font-size: 28px;
     cursor: pointer;
 `;
+
+const StyledPlusSign = styled.div`
+    position: relative;
+    top: 3px;
+    left: 15px;
+`
 
 const Detail = () => {
     const { getTransactionList } = useApi();
@@ -70,10 +73,10 @@ const Detail = () => {
                         setTransactions={setTransactions}
                     />
 
-                    <NewTransactionButton
-                        onClick={() => createNewTransaction()}
-                    >
+                    <NewTransactionButton onClick={() => createNewTransaction()}>
+                        <StyledPlusSign>
                         +
+                        </StyledPlusSign>
                     </NewTransactionButton>
 
                     {isModalOpen && (
