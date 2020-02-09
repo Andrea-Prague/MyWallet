@@ -79,7 +79,7 @@ const SingleTransactionModal = ({
 			<Header>{headerText}</Header>
 			<Close onClick={handleModalClose}>X</Close>
 
-			{headerText === "Edit transaction" && <InOuTSwitch />}
+			<InOuTSwitch />
 
 			<TransactionDate />
 			<div>

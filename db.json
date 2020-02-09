@@ -3,13 +3,13 @@
     {
       "id": 1,
       "name": "first transaction",
-      "amount": 300,
+      "amount": "300",
       "type": "+"
     },
     {
       "id": 2,
       "name": "second transaction",
-      "amount": 200,
+      "amount": "200",
       "type": "-"
     },
     {
@@ -17,6 +17,18 @@
       "name": "sdasd",
       "type": "+",
       "id": 3
+    },
+    {
+      "amount": "669",
+      "name": "jasoi",
+      "type": "+",
+      "id": 4
+    },
+    {
+      "amount": "99",
+      "name": "test",
+      "type": "+",
+      "id": 5
     }
   ]
 }

@@ -19,7 +19,6 @@ const TransactionList = ({
         return transactions.filter(data => {
             if (balanceType === "all") return data;
             const transactionType = data.type === "+" ? "in" : "out";
-
             return transactionType === balanceType;
         });
     };
@@ -28,9 +27,10 @@ const TransactionList = ({
         <TransactionRow
             transaction={data}
             openEditTransaction={() => openEditTransaction(data.id)}
-            handleDelete={() => handleDelete(data.id - 1)}
+            handleDelete={() => handleDelete(data.id - 1)} // transactions start indexing from 1
         />
     ));
+   
 };
 
 export default TransactionList;
