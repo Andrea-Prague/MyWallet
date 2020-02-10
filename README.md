@@ -5,4 +5,5 @@ To be added:
 
 To be fixed:
 - deleting transactions on TransactionList needs deleting them also in dtb
-- possibility to switch between transaction types when adding or editing
+- steps: open a transaction for edit, change the switch to out or in, change amount, switch changes back - desired state is that the switch stays where it was
+- color on switch in transaction lists

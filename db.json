@@ -29,6 +29,18 @@
       "name": "test",
       "type": "+",
       "id": 5
+    },
+    {
+      "amount": "55",
+      "name": "jioj",
+      "type": "-",
+      "id": 6
+    },
+    {
+      "amount": "6666",
+      "name": "cpp",
+      "type": "+",
+      "id": 7
     }
   ]
 }

@@ -75,7 +75,7 @@ const SingleTransactionModal = ({
 	const addNewTransaction = () => {
 		const transaction = {
 			...values,
-			type: "+",
+			type: transactionType ? transactionType : "+",
 			id: transactions.length + 1
 		};
 
