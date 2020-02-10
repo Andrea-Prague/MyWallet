@@ -48,16 +48,25 @@ const SingleTransactionModal = ({
 	const { saveNewTransaction } = useApi();
 
 	const [values, setValues] = useState({ amount: 0, name: "" });
+	const [transactionType, setTransactionType] = useState()
 
 	useEffect(() => {
 		headerText === "Edit transaction" &&
 			setValues(
-				transactions.find(transaction => transaction.id === transIdToEdit)
+				transactions.find(transaction => transaction.id === transIdToEdit) // return whole object from dtb with type and id keys
 			);
+			
 	}, []);
+	
+	useEffect (() => {
+		values.type && 
+			setTransactionType(values.type);
+	},[values]);
+
 
 	const onEditTransactions = () => {
 		let transactionsCopy = [...transactions];
+		values.type = transactionType
 		transactionsCopy[transIdToEdit - 1] = values;
 		setTransactions(transactionsCopy);
 		handleModalClose();
@@ -75,11 +84,13 @@ const SingleTransactionModal = ({
 	};
 
 	return (
+		
 		<Modal>
+			{console.log(values, transactionType)}
 			<Header>{headerText}</Header>
 			<Close onClick={handleModalClose}>X</Close>
 
-			<InOuTSwitch />
+			<InOuTSwitch transactionType={transactionType} setTransactionType={setTransactionType}/>
 
 			<TransactionDate />
 			<div>
