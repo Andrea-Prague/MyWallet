@@ -12,17 +12,7 @@ const TransactionList = ({
     const { deleteTransaction } = useApi()
 
     const handleDelete = index => {
-        console.log(index)
-        console.log(transactions)
-        const deleteTransactionObject = (transactions.find(
-            (transactionObject) => transactionObject.id === index
-        ))
-        console.log(deleteTransactionObject)
-        // axios.delete(`http://localhost:3001/TransactionData/${deleteTransaction.id}`,)
-        //     .then(res => {
-        //         console.log(res)
-        //         console.log(res.data)
-        //     })
+        
         setTransactions(
             transactions.filter(
                 (transactionObject) => transactionObject.id !== index
