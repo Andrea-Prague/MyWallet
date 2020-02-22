@@ -1,6 +1,6 @@
 import React from "react";
 import TransactionRow from "./TransactionRow";
-// import { useApi } from "../../lib/useApi";
+import { useApi } from "../../lib/useApi";
 import axios from "axios";
 
 const TransactionList = ({
@@ -9,27 +9,27 @@ const TransactionList = ({
     transactions,
     setTransactions
 }) => {
-    // const { deleteTransaction } = useApi
+    const { deleteTransaction } = useApi()
 
     const handleDelete = index => {
         console.log(index)
         console.log(transactions)
-        const deleteTransaction = (transactions.find(
+        const deleteTransactionObject = (transactions.find(
             (transactionObject) => transactionObject.id === index
         ))
-        console.log(deleteTransaction)
-        // deleteTransaction(deletedOject)
-        axios.delete(`http://localhost:3001/TransactionData/${deleteTransaction.id}`,)
-            .then(res => {
-                console.log(res)
-                console.log(res.data)
-            })
+        console.log(deleteTransactionObject)
+        // axios.delete(`http://localhost:3001/TransactionData/${deleteTransaction.id}`,)
+        //     .then(res => {
+        //         console.log(res)
+        //         console.log(res.data)
+        //     })
         setTransactions(
             transactions.filter(
                 (transactionObject) => transactionObject.id !== index
             )
         );
-        
+        deleteTransaction(index)
+
     };
 
     const getFilteredTransactions = () => {
