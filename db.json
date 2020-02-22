@@ -1,46 +1,22 @@
 {
   "TransactionData": [
     {
-      "id": 1,
-      "name": "first transaction",
-      "amount": "300",
-      "type": "+"
-    },
-    {
-      "id": 2,
-      "name": "second transaction",
-      "amount": "200",
-      "type": "-"
-    },
-    {
-      "amount": "123",
-      "name": "sdasd",
+      "amount": "98696",
+      "name": "po",
       "type": "+",
-      "id": 3
+      "id": 0
     },
     {
-      "amount": "669",
-      "name": "jasoi",
-      "type": "+",
-      "id": 4
-    },
-    {
-      "amount": "99",
-      "name": "test",
-      "type": "+",
-      "id": 5
-    },
-    {
-      "amount": "55",
-      "name": "jioj",
+      "amount": "9858",
+      "name": "pker",
       "type": "-",
-      "id": 6
+      "id": 2
     },
     {
-      "amount": "6666",
-      "name": "cpp",
-      "type": "+",
-      "id": 7
+      "amount": "78",
+      "name": "pker",
+      "type": "-",
+      "id": 4
     }
   ]
 }

@@ -2,6 +2,7 @@ To be added:
 - styling and better UX
 - date of the transaction
 - daily, monthly and total overview
+- add icon font and change x and + buttons
 
 To be fixed:
 - deleting transactions on TransactionList needs deleting them also in dtb

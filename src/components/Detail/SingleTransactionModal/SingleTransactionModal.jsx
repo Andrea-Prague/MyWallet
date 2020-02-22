@@ -76,7 +76,7 @@ const SingleTransactionModal = ({
 		const transaction = {
 			...values,
 			type: transactionType ? transactionType : "+",
-			id: transactions.length + 1
+			id: transactions.length
 		};
 
 		handleAddTransaction(transaction);
