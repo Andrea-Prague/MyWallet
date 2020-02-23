@@ -1,34 +1,22 @@
 {
   "TransactionData": [
     {
-      "id": 1,
-      "name": "first transaction",
-      "amount": "300",
-      "type": "+"
-    },
-    {
-      "id": 2,
-      "name": "second transaction",
-      "amount": "200",
-      "type": "-"
-    },
-    {
-      "amount": "123",
-      "name": "sdasd",
+      "amount": "98696",
+      "name": "po",
       "type": "+",
+      "id": 0
+    },
+    {
+      "amount": "98696",
+      "name": "po",
+      "type": "+",
+      "id": 2
+    },
+    {
+      "amount": "98696",
+      "name": "po",
+      "type": "-",
       "id": 3
-    },
-    {
-      "amount": "669",
-      "name": "jasoi",
-      "type": "+",
-      "id": 4
-    },
-    {
-      "amount": "99",
-      "name": "test",
-      "type": "+",
-      "id": 5
     }
   ]
 }
