@@ -11,10 +11,29 @@ const Switch = styled.div`
     margin-top: 5px;
 `;
 
-const SwitchSection = styled.div`
+const SwitchSectionAll = styled.div`
     width: 100%;
     cursor: pointer;
     text-align: center;
+    background-color: ${props =>
+        props.balanceType === 'all' ? "#fa8072" : "#fff"};
+    color: ${props => props.balanceType === "all" && "#fff"};
+`;
+const SwitchSectionIn = styled.div`
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    background-color: ${props =>
+        props.balanceType === 'in' ? "#fa8072" : "#fff"};
+    color: ${props => props.balanceType === "in" && "#fff"};
+`;
+const SwitchSectionOut = styled.div`
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    background-color: ${props =>
+        props.balanceType === 'out' ? "#fa8072" : "#fff"};
+    color: ${props => props.balanceType === "out" && "#fff"};
 `;
 
 const Divider = styled.div`
@@ -22,13 +41,13 @@ const Divider = styled.div`
     height: 20px;
 `;
 
-const BalanceSwitch = ({ setBalanceType }) => (
+const BalanceSwitch = ({ balanceType, setBalanceType }) => (
     <Switch>
-        <SwitchSection onClick={() => setBalanceType("all")}>ALL</SwitchSection>
+        <SwitchSectionAll onClick={() => setBalanceType("all")}>ALL</SwitchSectionAll>
         <Divider />
-        <SwitchSection onClick={() => setBalanceType("in")}>IN</SwitchSection>
+        <SwitchSectionIn onClick={() => setBalanceType("in")}>IN</SwitchSectionIn>
         <Divider />
-        <SwitchSection onClick={() => setBalanceType("out")}>OUT</SwitchSection>
+        <SwitchSectionOut onClick={() => setBalanceType("out")}>OUT</SwitchSectionOut>
     </Switch>
 );
 
