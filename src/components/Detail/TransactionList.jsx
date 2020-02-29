@@ -1,7 +1,6 @@
 import React from "react";
 import TransactionRow from "./TransactionRow";
 import { useApi } from "../../lib/useApi";
-import axios from "axios";
 
 const TransactionList = ({
     balanceType,

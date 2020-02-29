@@ -55,7 +55,6 @@ const SingleTransactionModal = ({
 			setValues(
 				transactions.find(transaction => transaction.id === transIdToEdit) // return whole object from dtb with type and id keys
 			);
-			
 	}, []);
 	
 	useEffect (() => {
@@ -67,7 +66,10 @@ const SingleTransactionModal = ({
 	const onEditTransactions = () => {
 		let transactionsCopy = [...transactions];
 		values.type = transactionType
-		transactionsCopy[transIdToEdit - 1] = values;
+		console.log(transactionsCopy)
+		console.log(transIdToEdit)
+		transactionsCopy[transIdToEdit] = values;
+		console.log(transactionsCopy)
 		setTransactions(transactionsCopy);
 		handleModalClose();
 	};
@@ -76,7 +78,7 @@ const SingleTransactionModal = ({
 		const transaction = {
 			...values,
 			type: transactionType ? transactionType : "+",
-			id: transactions.length
+			id: Date.now()
 		};
 
 		handleAddTransaction(transaction);
