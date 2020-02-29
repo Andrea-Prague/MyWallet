@@ -45,7 +45,7 @@ const SingleTransactionModal = ({
 	setTransactions,
 	transIdToEdit
 }) => {
-	const { saveNewTransaction } = useApi();
+	const { saveNewTransaction, editTransaction, getTransactionList } = useApi();
 
 	const [values, setValues] = useState({ amount: 0, name: "" });
 	const [transactionType, setTransactionType] = useState()
@@ -66,11 +66,15 @@ const SingleTransactionModal = ({
 	const onEditTransactions = () => {
 		let transactionsCopy = [...transactions];
 		values.type = transactionType
-		console.log(transactionsCopy)
-		console.log(transIdToEdit)
-		transactionsCopy[transIdToEdit] = values;
-		console.log(transactionsCopy)
+
+		transactionsCopy.map((transactionCopy, i) => {
+			if(transactionCopy.id === values.id) {
+				transactionsCopy[i] = values
+			}
+			return transactionsCopy
+		})	
 		setTransactions(transactionsCopy);
+		editTransaction(values, values.id)
 		handleModalClose();
 	};
 
@@ -88,7 +92,6 @@ const SingleTransactionModal = ({
 	return (
 		
 		<Modal>
-			{console.log(values, transactionType)}
 			<Header>{headerText}</Header>
 			<Close onClick={handleModalClose}>X</Close>
 

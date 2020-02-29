@@ -8,6 +8,7 @@ export const useApi = () => {
     return {
         getTransactionList: () => axios.get("/TransactionData"),
         saveNewTransaction: body => axios.post("/TransactionData", body),
-        deleteTransaction: deleteBody => axios.delete(`/TransactionData/${deleteBody}`)
+        deleteTransaction: deleteBody => axios.delete(`/TransactionData/${deleteBody}`),
+        editTransaction: (editBody, editId) => axios.put(`/TransactionData/${editId}`, editBody)
     };
 };

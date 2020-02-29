@@ -37,7 +37,6 @@ const Detail = () => {
     const handleModalOpen = transactionId => {
         setIsModalOpen(!isModalOpen);
         setTransIdToEdit(transactionId);
-        console.log(transactionId)
     };
 
     const handleAddTransaction = transaction => {
