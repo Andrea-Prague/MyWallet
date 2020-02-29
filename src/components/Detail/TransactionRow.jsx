@@ -37,7 +37,7 @@ const StyledDeleteButton = styled.div`
 
 const TransactionRow = ({ transaction, openEditTransaction, handleDelete }) => {
     return (
-        <Row>
+        <Row>{console.log(transaction)}
             <StyledClickableRow onClick={openEditTransaction}>
                 <Name>{transaction.name}</Name>
                 <Amount type={transaction.type} amount={transaction.amount} />
