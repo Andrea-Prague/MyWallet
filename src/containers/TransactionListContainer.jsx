@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useApi } from "../lib/useApi";
 import styled from "styled-components";
 
-import BalanceSwitch from "../components/Detail/BalanceSwich";
+import BalanceSwitch from "../components/Detail/BalanceSwitch";
 import TransactionList from "../components/Detail/TransactionList";
 import SingleTransactionModal from "../components/Detail/SingleTransactionModal/SingleTransactionModal";
 
@@ -64,7 +64,7 @@ const Detail = () => {
         <div>
             {transactions && (
                 <>
-                    <BalanceSwitch setBalanceType={setBalanceType} />
+                    <BalanceSwitch balanceType={balanceType} setBalanceType={setBalanceType} />
 
                     <TransactionList
                         balanceType={balanceType}
