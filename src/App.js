@@ -12,7 +12,7 @@ const GlobalStyles = styled.div`
     font-family: "Roboto";
 `;
 
-const App = () => {
+   const App = () => {
     return (
         <>
             <GlobalStyles />
