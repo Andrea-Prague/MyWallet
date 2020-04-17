@@ -45,7 +45,7 @@ const SingleTransactionModal = ({
 	setTransactions,
 	transIdToEdit
 }) => {
-	const { saveNewTransaction, editTransaction, getTransactionList } = useApi();
+	const { saveNewTransaction, editTransaction } = useApi();
 
 	const [values, setValues] = useState({ amount: 0, name: "" });
 	const [transactionType, setTransactionType] = useState()
