@@ -19,6 +19,11 @@ const Name = styled.div`
     width: 100%;
 `;
 
+const Date = styled.div`
+    width: 50%;
+    font-size: 12px;
+`;
+
 const Currency = styled.div`
     padding: 0 5px;
 `;
@@ -37,8 +42,9 @@ const StyledDeleteButton = styled.div`
 
 const TransactionRow = ({ transaction, openEditTransaction, handleDelete }) => {
     return (
-        <Row>{console.log(transaction)}
+        <Row>
             <StyledClickableRow onClick={openEditTransaction}>
+                <Date>{transaction.date}</Date>
                 <Name>{transaction.name}</Name>
                 <Amount type={transaction.type} amount={transaction.amount} />
                 <Currency>Kč</Currency>

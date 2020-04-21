@@ -45,7 +45,7 @@ const SingleTransactionModal = ({
 	setTransactions,
 	transIdToEdit
 }) => {
-	const { saveNewTransaction, editTransaction, getTransactionList } = useApi();
+	const { saveNewTransaction, editTransaction } = useApi();
 
 	const [values, setValues] = useState({ amount: 0, name: "" });
 	const [transactionType, setTransactionType] = useState()
@@ -79,10 +79,12 @@ const SingleTransactionModal = ({
 	};
 
 	const addNewTransaction = () => {
+		const date = new Date()
 		const transaction = {
 			...values,
 			type: transactionType ? transactionType : "+",
-			id: Date.now()
+			id: Date.now(),
+			date: date.toLocaleDateString("cs")
 		};
 
 		handleAddTransaction(transaction);
@@ -90,14 +92,12 @@ const SingleTransactionModal = ({
 	};
 
 	return (
-		
 		<Modal>
 			<Header>{headerText}</Header>
 			<Close onClick={handleModalClose}>X</Close>
 
 			<InOuTSwitch transactionType={transactionType} setTransactionType={setTransactionType}/>
-
-			<TransactionDate />
+			<TransactionDate date={headerText === 'Edit transaction' ? values.date : new Date().toLocaleDateString('cs')}/>
 			<div>
 				<StyledInput
 					type="number"
